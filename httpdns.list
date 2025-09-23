@@ -1,14 +1,13 @@
 #知乎
-IP-CIDR,202.90.108.13/32,REJECT,pre-matching,no-resolve
+IP-CIDR,202.90.108.13/32
 
 #阿里
-IP-CIDR,59.82.9.145/32,REJECT,pre-matching,no-resolve
-IP-CIDR,59.82.14.162/32,REJECT,pre-matching,no-resolve
-IP-CIDR,59.82.34.148/32,REJECT,pre-matching,no-resolve
-IP-CIDR,59.82.113.219/32,REJECT,pre-matching,no-resolve
+IP-CIDR,59.82.9.145/32
+IP-CIDR,59.82.34.148/32
+IP-CIDR,59.82.113.219/32
 
 #美团
-DOMAIN-SUFFIX,dreport.meituan.net,REJECT,pre-matching,extended-matching
-DOMAIN-SUFFIX,d.meituan.net,REJECT,pre-matching,extended-matching
-IP-CIDR,202.90.110.46/32,REJECT,pre-matching,no-resolve
-# 删除重复的202.90.108.13规则和202.90.110.46规则
+DOMAIN-SUFFIX,dreport.meituan.net
+DOMAIN-SUFFIX,d.meituan.net,REJECT
+IP-CIDR,202.90.110.46/32,REJECT
+

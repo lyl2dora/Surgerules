@@ -8,3 +8,7 @@ IP-CIDR,59.82.9.145/32,REJECT,pre-matching,no-resolve
 IP-CIDR,59.82.14.162/32,REJECT,pre-matching,no-resolve
 IP-CIDR,59.82.34.148/32,REJECT,pre-matching,no-resolve
   
+#美团
+IP-CIDR,202.90.110.46/32,REJECT,pre-matching,no-resolve
+IP-CIDR,202.90.108.13/32,REJECT,pre-matching,no-resolve
+IP-CIDR,202.90.110.46/32,REJECT,no-resolve

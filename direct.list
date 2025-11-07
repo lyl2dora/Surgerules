@@ -13,5 +13,8 @@ DOMAIN-SUFFIX,dellupdater.dell.com
 
 #jump desktop
 PROTOCOL,STUN,DIRECT
-DOMAIN-SUFFIX,turn.jumpdesktop.com,DIRECT
-DOMAIN-SUFFIX,turn-flow.jumpdesktop.com,DIRECT
+DOMAIN-SUFFIX,turn.jumpdesktop.com
+DOMAIN-SUFFIX,turn-flow.jumpdesktop.com
+
+#Dlercloud
+DOMAIN-SUFFIX,dler.cloud

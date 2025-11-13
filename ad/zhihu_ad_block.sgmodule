@@ -1,0 +1,66 @@
+#!name=知乎去广告
+#!desc=屏蔽知乎应用内的开屏广告、信息流广告、banner广告和统计追踪
+#!system=ios
+
+[Rule]
+# 友盟统计分析
+DOMAIN-SUFFIX,umeng.com,REJECT
+DOMAIN-SUFFIX,uyunad.com,REJECT
+
+# 知乎数据分析
+DOMAIN-SUFFIX,zhihu-web-analytics.zhihu.com,REJECT
+
+# 广告追踪
+DOMAIN,sugar.zhihu.com,REJECT
+
+[URL Rewrite]
+# 开屏广告
+^https?:\/\/api\.zhihu\.com\/commercial_api\/real_time_launch(_v2)? _ reject
+
+# 二楼广告
+^https?:\/\/api\.zhihu\.com\/commercial_api\/real_time_second_floor(_v2)? _ reject
+
+# 悬浮层广告
+^https?:\/\/api\.zhihu\.com\/commercial_api\/app_float_layer _ reject
+
+# banner广告
+^https?:\/\/api\.zhihu\.com\/commercial_api\/banners?(_v3)?\/? _ reject
+
+# 会员推广
+^https?:\/\/api\.zhihu\.com\/bazaar\/vip_tab\/header _ reject
+
+# 引导推广
+^https?:\/\/api\.zhihu\.com\/growth_signal\/guide\/ _ reject
+
+# 市场弹窗
+^https?:\/\/api\.zhihu\.com\/market\/popovers(_v2)? _ reject
+
+# 推荐窗口
+^https?:\/\/api\.zhihu\.com\/event-center\/recommend\/window _ reject
+
+# 知乎云广告
+^https?:\/\/m-cloud\.zhihu\.com\/api\/cloud\/resource\/read _ reject
+^https?:\/\/m-cloud\.zhihu\.com\/api\/cloud\/zhihu\/config\/all _ reject-dict
+
+# 友盟统计
+^https?:\/\/cnlogs\.umeng\.com\/umpx_push_ _ reject
+^https?:\/\/cnlogs\.umeng\.com\/unify_logs _ reject
+^https?:\/\/utoken\.umeng\.com\/api\/updateZdata _ reject
+
+# 优量汇广告
+^https?:\/\/aaid\.uyunad\.com\/v1\/getaaid _ reject
+
+# 数据分析
+^https?:\/\/zhihu-web-analytics\.zhihu\.com\/api\/ _ reject
+
+# 广告追踪
+^https?:\/\/sugar\.zhihu\.com\/glory_adreaper\/glory_log _ reject
+
+[Script]
+# 信息流广告过滤
+知乎推荐流去广告 = type=http-response,pattern=^https?:\/\/api\.zhihu\.com\/topstory\/recommend,script-path=https://raw.githubusercontent.com/lyl2dora/YOUR_REPO/main/zhihu_feed_filter.js,requires-body=true,max-size=-1
+
+知乎热榜去广告 = type=http-response,pattern=^https?:\/\/api\.zhihu\.com\/topstory\/hot-lists,script-path=https://raw.githubusercontent.com/lyl2dora/YOUR_REPO/main/zhihu_feed_filter.js,requires-body=true,max-size=-1
+
+[MITM]
+hostname = %APPEND% api.zhihu.com, m-cloud.zhihu.com, *.umeng.com, *.uyunad.com, zhihu-web-analytics.zhihu.com, sugar.zhihu.com

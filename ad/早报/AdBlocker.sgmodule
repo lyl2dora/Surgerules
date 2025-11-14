@@ -1,6 +1,4 @@
-#!name=Ad Blocker Enhanced - HAR Analysis
-#!desc=增强去广告模块 - 拦截广告、追踪服务，并重写特定URL。基于 2025-11-15 HAR 文件分析生成。
-#!system=ios,mac
+#!name=联合早报去广告
 
 [Rule]
 # ========================================

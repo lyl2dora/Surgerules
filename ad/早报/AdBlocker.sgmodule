@@ -1,0 +1,86 @@
+#!name=Ad Blocker Enhanced - HAR Analysis
+#!system=ios,mac
+
+[Rule]
+# ========================================
+# Google Ads & DoubleClick
+# ========================================
+# Google DoubleClick 广告服务
+DOMAIN-SUFFIX,pubads.g.doubleclick.net,REJECT
+DOMAIN-SUFFIX,googleads.g.doubleclick.net,REJECT
+
+# Google AdSense 广告
+DOMAIN-SUFFIX,pagead2.googlesyndication.com,REJECT
+DOMAIN-SUFFIX,tpc.googlesyndication.com,REJECT
+
+# Google 广告关键词拦截
+DOMAIN-KEYWORD,googleadservices,REJECT
+DOMAIN-KEYWORD,googlesyndication,REJECT
+
+# ========================================
+# Third-Party Ad Networks
+# ========================================
+# AppNexus 程序化广告平台
+DOMAIN-SUFFIX,adnxs.com,REJECT
+DOMAIN,ib.adnxs.com,REJECT
+
+# ========================================
+# Analytics & Tracking Services
+# ========================================
+# Permutive 用户行为分析和追踪
+DOMAIN-SUFFIX,permutive.app,REJECT
+
+# 字节跳动 SDK 日志和追踪服务
+DOMAIN-SUFFIX,tobsnssdk.com,REJECT
+DOMAIN,toblog.tobsnssdk.com,REJECT
+
+# Firebase 日志服务
+DOMAIN,firebaselogging-pa.googleapis.com,REJECT
+
+# New Relic 移动端监控和分析
+DOMAIN-SUFFIX,newrelic.com,REJECT
+DOMAIN,mobile-collector.newrelic.com,REJECT
+
+# ========================================
+# Site-Specific Ad Blocking
+# ========================================
+# 早报 (Zaobao) 移动端横幅广告
+URL-REGEX,^https?:\/\/www\.zaobao\.com\.sg\/web2\/.*banner.*,REJECT
+URL-REGEX,^https?:\/\/www\.zaobao\.com\.sg\/web2\/ad.*,REJECT
+
+# ========================================
+# Generic Ad/Tracking Keywords
+# ========================================
+# 通用广告服务关键词
+DOMAIN-KEYWORD,adservice,REJECT
+DOMAIN-KEYWORD,analytics-,REJECT
+
+[URL Rewrite]
+# ========================================
+# URL 重写规则 - 拦截广告请求
+# ========================================
+# Google 广告相关 URL 拦截
+^https?:\/\/pagead2\.googlesyndication\.com\/pagead\/.+ _ reject
+^https?:\/\/.*\.doubleclick\.net\/gampad\/ads.+ _ reject
+
+# AppNexus 广告请求拦截
+^https?:\/\/ib\.adnxs\.com\/openrtb2\/.+ _ reject
+
+# 早报广告 banner 拦截
+^https?:\/\/www\.zaobao\.com\.sg\/web2\/(mobile-banner|article-bottom-banner).+ _ reject
+
+# 字节跳动日志上报拦截
+^https?:\/\/toblog\.tobsnssdk\.com\/service\/\d+\/(log|app_log|abtest_config).+ _ reject
+
+# Firebase 日志上报拦截
+^https?:\/\/firebaselogging-pa\.googleapis\.com\/v1\/firelog\/.+ _ reject
+
+# New Relic 数据收集拦截
+^https?:\/\/mobile-collector\.newrelic\.com\/mobile\/.+ _ reject
+
+# Permutive 追踪请求拦截
+^https?:\/\/api\.permutive\.app\/v2\.0\/(batch\/events|identify|internal\/metrics).+ _ reject
+
+[MITM]
+# 需要解密的域名（用于 URL Rewrite 生效）
+hostname = %APPEND% *.googlesyndication.com, *.doubleclick.net, *.adnxs.com, www.zaobao.com.sg, toblog.tobsnssdk.com, firebaselogging-pa.googleapis.com, mobile-collector.newrelic.com, api.permutive.app

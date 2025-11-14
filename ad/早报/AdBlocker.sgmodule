@@ -81,6 +81,15 @@ DOMAIN-KEYWORD,analytics-,REJECT
 # Permutive 追踪请求拦截
 ^https?:\/\/api\.permutive\.app\/v2\.0\/(batch\/events|identify|internal\/metrics).+ _ reject
 
+# ========================================
+# 推荐购买相关 URL 拦截
+# ========================================
+# 早报推荐购买 API
+^https?:\/\/am\.sphdigital\.com\.sg\/_plat\/api\/campaign.+ _ reject
+
+# 商品图片
+^https?:\/\/cassette\.sphdigital\.com\.sg\/image\/am\/.+ _ reject
+
 [MITM]
 # 需要解密的域名（用于 URL Rewrite 生效）
-hostname = %APPEND% *.googlesyndication.com, *.doubleclick.net, *.adnxs.com, www.zaobao.com.sg, toblog.tobsnssdk.com, firebaselogging-pa.googleapis.com, mobile-collector.newrelic.com, api.permutive.app
+hostname = %APPEND% *.googlesyndication.com, *.doubleclick.net, *.adnxs.com, www.zaobao.com.sg, toblog.tobsnssdk.com, firebaselogging-pa.googleapis.com, mobile-collector.newrelic.com, api.permutive.app, am.sphdigital.com.sg, cassette.sphdigital.com.sg

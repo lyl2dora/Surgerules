@@ -8,6 +8,8 @@
  * 3. 移除书架悬浮广告
  * 4. 清理Widget广告内容
  * 5. 移除签到页面广告
+ * 6. 隐藏每日推荐（猜你喜欢）
+ * 7. 清除书架顶部操作横幅广告
  */
 
 const url = $request.url;
@@ -100,6 +102,29 @@ try {
             }
         }
         console.log('已清除签到页面广告');
+    }
+
+    // 7. 处理每日推荐接口（猜你喜欢）
+    // /argus/api/v1/dailyrecommend/recommendBook
+    else if (url.includes('/dailyrecommend/recommendBook')) {
+        // 返回空数据，隐藏"猜你喜欢"推荐
+        obj.Data = null;
+        obj.Result = 0;
+        console.log('已隐藏每日推荐（猜你喜欢）');
+    }
+
+    // 8. 处理书架顶部操作横幅（包含广告）
+    // /argus/api/v1/bookshelf/getTopOperation
+    else if (url.includes('/bookshelf/getTopOperation')) {
+        if (obj.Data) {
+            // 清空所有顶部操作项（通常包含广告）
+            obj.Data.Items = [];
+            // 清空主要信息（横幅广告）
+            if (obj.Data.MainInfo) {
+                obj.Data.MainInfo = null;
+            }
+        }
+        console.log('已清除书架顶部操作横幅广告');
     }
 
     body = JSON.stringify(obj);

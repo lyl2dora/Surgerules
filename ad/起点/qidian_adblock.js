@@ -10,6 +10,8 @@
  * 5. 移除签到页面广告
  * 6. 隐藏每日推荐（猜你喜欢）
  * 7. 清除书架顶部操作横幅广告
+ * 8. 清除书架广告（/bookshelf/getad）
+ * 9. 清除弹窗广告批量获取（/popup/batchget）
  */
 
 const url = $request.url;
@@ -163,6 +165,41 @@ try {
             }
         }
         console.log('已清除书架沉浸推荐');
+    }
+
+    // 11. 处理书架广告接口
+    // /argus/api/v1/bookshelf/getad
+    else if (url.includes('/bookshelf/getad')) {
+        if (obj.Data) {
+            // 隐藏广告显示
+            obj.Data.Show = 0;
+            // 清空游戏中心URL
+            if (obj.Data.GameUrl) {
+                obj.Data.GameUrl = "";
+            }
+            // 清空其他可能的广告字段
+            if (obj.Data.AdInfo) {
+                obj.Data.AdInfo = null;
+            }
+            if (obj.Data.AdvInfo) {
+                obj.Data.AdvInfo = null;
+            }
+        }
+        console.log('已清除书架广告');
+    }
+
+    // 12. 处理弹窗广告批量获取接口
+    // /argus/api/v1/popup/batchget
+    else if (url.includes('/popup/batchget')) {
+        if (obj.Data) {
+            // 清空弹窗列表
+            if (obj.Data.PopupList) {
+                obj.Data.PopupList = [];
+            }
+            // 清空版本信息（防止更新弹窗）
+            obj.Data.Version = 0;
+        }
+        console.log('已清除弹窗广告列表');
     }
 
     body = JSON.stringify(obj);

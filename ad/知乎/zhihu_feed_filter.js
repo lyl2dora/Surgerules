@@ -53,6 +53,30 @@ try {
         return false;
       }
 
+      // 【新增】过滤 extra.promotion 字段（知乎最新的广告标识）
+      if (item.extra && item.extra.promotion) {
+        console.log('已过滤: promotion推广内容 (ID: ' + (item.extra.promotion.id || 'unknown') + ')');
+        return false;
+      }
+
+      // 【新增】过滤 commercial_info 字段
+      if (item.commercial_info) {
+        console.log('已过滤: commercial_info广告');
+        return false;
+      }
+
+      // 【新增】过滤卡片标签为广告的内容
+      if (item.card_label && item.card_label.type === 'ad') {
+        console.log('已过滤: card_label标记为广告');
+        return false;
+      }
+
+      // 【新增】过滤 commercial_card 和 promotion 类型
+      if (item.type === 'commercial_card' || item.type === 'promotion') {
+        console.log('已过滤: ' + item.type + '类型广告');
+        return false;
+      }
+
       // ========== 圈子推荐过滤 ==========
 
       // 过滤圈子相关类型的卡片

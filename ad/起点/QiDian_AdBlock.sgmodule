@@ -1,6 +1,5 @@
 #!name=起点读书去广告
 #!desc=去除起点读书APP的广告、闪屏和统计上报
-#!system=ios
 #!requirement=CORE_VERSION>=20
 
 [Rule]

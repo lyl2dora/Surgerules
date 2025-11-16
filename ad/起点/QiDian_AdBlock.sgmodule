@@ -6,8 +6,8 @@
 # 拦截闪屏广告图片
 URL-REGEX,^https?:\/\/imgservices-1252317822\.file\.myqcloud\.com\/splashImage\/.*,REJECT
 
-# 拦截穿山甲广告SDK
-DOMAIN-SUFFIX,pangolin-sdk-toutiao.com,REJECT
+# 拦截穿山甲广告SDK（使用KEYWORD匹配所有变体域名）
+DOMAIN-KEYWORD,pangolin-sdk-toutiao,REJECT
 URL-REGEX,^https?:\/\/.*\.pglstatp-toutiao\.com\/obj\/ad-pattern\/.*,REJECT
 URL-REGEX,^https?:\/\/lf-cdn-tos\.bytescm\.com\/obj\/static\/ad\/.*,REJECT
 
@@ -49,6 +49,7 @@ qidian_top_operation = type=http-response,pattern=^https?:\/\/magev6\.if\.qidian
 qidian_high_level_read = type=http-response,pattern=^https?:\/\/magev6\.if\.qidian\.com\/argus\/api\/v1\/bookshelf\/getHighLevelBookReadInfo,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/lyl2dora/Surgerules/refs/heads/main/ad/%E8%B5%B7%E7%82%B9/qidian_adblock.js
 qidian_bookshelf_ad = type=http-response,pattern=^https?:\/\/magev6\.if\.qidian\.com\/argus\/api\/v1\/bookshelf\/getad,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/lyl2dora/Surgerules/refs/heads/main/ad/%E8%B5%B7%E7%82%B9/qidian_adblock.js
 qidian_popup = type=http-response,pattern=^https?:\/\/magev6\.if\.qidian\.com\/argus\/api\/v1\/popup\/batchget,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/lyl2dora/Surgerules/refs/heads/main/ad/%E8%B5%B7%E7%82%B9/qidian_adblock.js
+qidian_user_discover = type=http-response,pattern=^https?:\/\/magev6\.if\.qidian\.com\/argus\/api\/v1\/user\/getsimplediscover,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/lyl2dora/Surgerules/refs/heads/main/ad/%E8%B5%B7%E7%82%B9/qidian_adblock.js
 
 [MITM]
 # 注意：DOMAIN规则基于SNI，不需要MITM即可工作

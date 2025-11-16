@@ -14,22 +14,22 @@ DOMAIN,sugar.zhihu.com,REJECT
 
 [URL Rewrite]
 # 知乎所有商业化广告API（一条规则覆盖所有广告）
-^https?:\/\/api\.zhihu\.com\/commercial_api\/ _ reject
+^https?:\/\/api\.zhihu\.com\/commercial_api\/ _ reject-dict
 
 # 会员推广
-^https?:\/\/api\.zhihu\.com\/bazaar\/vip_tab\/header _ reject
+^https?:\/\/api\.zhihu\.com\/bazaar\/vip_tab\/header _ reject-dict
 
 # 引导推广
-^https?:\/\/api\.zhihu\.com\/growth_signal\/guide\/ _ reject
+^https?:\/\/api\.zhihu\.com\/growth_signal\/guide\/ _ reject-dict
 
 # 市场弹窗
-^https?:\/\/api\.zhihu\.com\/market\/popovers(_v2)? _ reject
+^https?:\/\/api\.zhihu\.com\/market\/popovers(_v2)? _ reject-dict
 
 # 推荐窗口
-^https?:\/\/api\.zhihu\.com\/event-center\/recommend\/window _ reject
+^https?:\/\/api\.zhihu\.com\/event-center\/recommend\/window _ reject-dict
 
 # 知乎云广告
-^https?:\/\/m-cloud\.zhihu\.com\/api\/cloud\/resource\/read _ reject
+^https?:\/\/m-cloud\.zhihu\.com\/api\/cloud\/resource\/read _ reject-dict
 ^https?:\/\/m-cloud\.zhihu\.com\/api\/cloud\/zhihu\/config\/all _ reject-dict
 
 # 友盟统计

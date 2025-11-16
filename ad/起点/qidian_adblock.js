@@ -37,6 +37,10 @@ try {
             if (obj.Data.AdvList) {
                 obj.Data.AdvList = [];
             }
+            // 清空ItemList（悬浮广告列表）
+            if (obj.Data.ItemList) {
+                obj.Data.ItemList = [];
+            }
         }
         console.log('已清除书架悬浮广告');
     }
@@ -49,6 +53,10 @@ try {
             obj.Data.SplashAdList = [];
             obj.Data.TipList = [];
             obj.Data.VideoAdList = [];
+            // 清空List字段（主要的闪屏广告列表）
+            if (obj.Data.List) {
+                obj.Data.List = [];
+            }
         }
         console.log('已清除闪屏广告配置');
     }

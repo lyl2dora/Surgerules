@@ -202,6 +202,21 @@ try {
         console.log('已清除弹窗广告列表');
     }
 
+    // 13. 处理"我"页面发现入口（过滤推广）
+    // /argus/api/v1/user/getsimplediscover
+    else if (url.includes('/user/getsimplediscover')) {
+        if (obj.Data && obj.Data.Items) {
+            // 过滤掉推广类型的入口
+            const promotionKeywords = ['YOUXI', 'HUODONG', 'HONGBAO', 'SHANGCHENG', 'KAPAI', 'TOUZI'];
+            const originalCount = obj.Data.Items.length;
+            obj.Data.Items = obj.Data.Items.filter(item => {
+                return !promotionKeywords.some(kw => item.KeyName.includes(kw));
+            });
+            const filteredCount = originalCount - obj.Data.Items.length;
+            console.log(`已过滤"我"页面推广入口: ${filteredCount}个 (游戏、活动中心、红包广场、周边商城、卡牌广场、新书投资)`);
+        }
+    }
+
     body = JSON.stringify(obj);
 
 } catch (error) {

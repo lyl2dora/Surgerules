@@ -127,6 +127,36 @@ try {
         console.log('已清除书架顶部操作横幅广告');
     }
 
+    // 9. 处理每日推荐完整版接口（V2版本）
+    // /argus/api/v2/dailyrecommend/getdailyrecommend
+    else if (url.includes('/dailyrecommend/getdailyrecommend')) {
+        if (obj.Data) {
+            // 清空推荐书籍列表
+            obj.Data.Items = [];
+            // 清空背景信息
+            if (obj.Data.BgInfo) {
+                obj.Data.BgInfo = null;
+            }
+            // 清空AI推荐入口
+            if (obj.Data.AiRecommendUrl) {
+                obj.Data.AiRecommendUrl = "";
+            }
+        }
+        console.log('已清除每日推荐完整版（V2）');
+    }
+
+    // 10. 处理书架高级阅读信息（包含推荐书籍）
+    // /argus/api/v1/bookshelf/getHighLevelBookReadInfo
+    else if (url.includes('/getHighLevelBookReadInfo')) {
+        if (obj.Data) {
+            // 清空沉浸推荐书籍列表（SinkBookInfos）
+            if (obj.Data.SinkBookInfos) {
+                obj.Data.SinkBookInfos = [];
+            }
+        }
+        console.log('已清除书架沉浸推荐');
+    }
+
     body = JSON.stringify(obj);
 
 } catch (error) {

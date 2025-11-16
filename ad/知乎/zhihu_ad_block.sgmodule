@@ -47,10 +47,15 @@ DOMAIN,sugar.zhihu.com,REJECT
 ^https?:\/\/sugar\.zhihu\.com\/glory_adreaper\/glory_log _ reject
 
 [Script]
-# 信息流广告和圈子推荐过滤
-知乎推荐流过滤 = type=http-response,pattern=^https?:\/\/api\.zhihu\.com\/topstory\/recommend,script-path=https://raw.githubusercontent.com/lyl2dora/Surgerules/refs/heads/main/ad/%E7%9F%A5%E4%B9%8E/zhihu_feed_filter.js,requires-body=true,max-size=-1
+# 信息流广告和圈子推荐过滤（iOS版本 - 支持无限制响应体大小）
+知乎推荐流过滤 = type=http-response,pattern=^https?:\/\/api\.zhihu\.com\/topstory\/recommend,script-path=https://raw.githubusercontent.com/lyl2dora/Surgerules/refs/heads/main/ad/%E7%9F%A5%E4%B9%8E/zhihu_feed_filter.js,requires-body=true,max-size=-1 #!IOS-ONLY
 
-知乎热榜过滤 = type=http-response,pattern=^https?:\/\/api\.zhihu\.com\/topstory\/hot-lists,script-path=https://raw.githubusercontent.com/lyl2dora/Surgerules/refs/heads/main/ad/%E7%9F%A5%E4%B9%8E/zhihu_feed_filter.js,requires-body=true,max-size=-1
+知乎热榜过滤 = type=http-response,pattern=^https?:\/\/api\.zhihu\.com\/topstory\/hot-lists,script-path=https://raw.githubusercontent.com/lyl2dora/Surgerules/refs/heads/main/ad/%E7%9F%A5%E4%B9%8E/zhihu_feed_filter.js,requires-body=true,max-size=-1 #!IOS-ONLY
+
+# 信息流广告和圈子推荐过滤（macOS版本 - 使用3MB限制）
+知乎推荐流过滤 = type=http-response,pattern=^https?:\/\/api\.zhihu\.com\/topstory\/recommend,script-path=https://raw.githubusercontent.com/lyl2dora/Surgerules/refs/heads/main/ad/%E7%9F%A5%E4%B9%8E/zhihu_feed_filter.js,requires-body=true,max-size=3145728 #!MACOS-ONLY
+
+知乎热榜过滤 = type=http-response,pattern=^https?:\/\/api\.zhihu\.com\/topstory\/hot-lists,script-path=https://raw.githubusercontent.com/lyl2dora/Surgerules/refs/heads/main/ad/%E7%9F%A5%E4%B9%8E/zhihu_feed_filter.js,requires-body=true,max-size=3145728 #!MACOS-ONLY
 
 [MITM]
 hostname = %APPEND% api.zhihu.com, m-cloud.zhihu.com, *.umeng.com, *.uyunad.com, zhihu-web-analytics.zhihu.com, sugar.zhihu.com

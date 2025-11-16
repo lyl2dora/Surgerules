@@ -53,4 +53,5 @@ qidian_popup = type=http-response,pattern=^https?:\/\/magev6\.if\.qidian\.com\/a
 [MITM]
 # 注意：DOMAIN规则基于SNI，不需要MITM即可工作
 # 此处仅配置需要脚本处理或URL-REGEX规则的域名
-hostname = %APPEND% magev6.if.qidian.com, *.file.myqcloud.com, *.pglstatp-toutiao.com, *.bytescm.com, *.pangolin-sdk-toutiao.com
+# 新增：h5.if.qidian.com 和 ataru.qidian.com 用于拦截H5页面内容（精选30本、每日导读、活动等）
+hostname = %APPEND% magev6.if.qidian.com, h5.if.qidian.com, ataru.qidian.com, *.file.myqcloud.com, *.pglstatp-toutiao.com, *.bytescm.com, *.pangolin-sdk-toutiao.com

@@ -12,6 +12,8 @@
  * 7. 清除书架顶部操作横幅广告
  * 8. 清除书架广告（/bookshelf/getad）
  * 9. 清除弹窗广告批量获取（/popup/batchget）
+ * 10. 过滤"我"页面推广入口
+ * 11. 清除客户端配置中的广告（活动弹窗、视频广告等）
  */
 
 const url = $request.url;
@@ -214,6 +216,84 @@ try {
             });
             const filteredCount = originalCount - obj.Data.Items.length;
             console.log(`已过滤"我"页面推广入口: ${filteredCount}个 (游戏、活动中心、红包广场、周边商城、卡牌广场、新书投资)`);
+        }
+    }
+
+    // 14. 处理客户端配置接口（包含多种广告配置）
+    // /argus/api/v1/client/getconf
+    else if (url.includes('/client/getconf')) {
+        if (obj.Data) {
+            let cleanedItems = [];
+
+            // 清除活动弹窗配置
+            if (obj.Data.ActivityPopup && obj.Data.ActivityPopup.Data) {
+                const popupCount = obj.Data.ActivityPopup.Data.length;
+                obj.Data.ActivityPopup.Data = [];
+                obj.Data.ActivityPopup.Version = 0;
+                if (popupCount > 0) {
+                    cleanedItems.push(`活动弹窗(${popupCount}个)`);
+                }
+            }
+
+            // 清除活动图标
+            if (obj.Data.ActivityIcon) {
+                obj.Data.ActivityIcon = null;
+                cleanedItems.push('活动图标');
+            }
+
+            // 清除视频广告位置配置
+            if (obj.Data.AdVideoPositionConfig && obj.Data.AdVideoPositionConfig.length > 0) {
+                const adCount = obj.Data.AdVideoPositionConfig.length;
+                obj.Data.AdVideoPositionConfig = [];
+                cleanedItems.push(`视频广告位(${adCount}个)`);
+            }
+
+            // 清除广点通广告配置（如果启用）
+            if (obj.Data.GDT) {
+                // 确保所有广告都是禁用状态
+                if (obj.Data.GDT.Account) {
+                    obj.Data.GDT.Account.Enable = 0;
+                }
+                if (obj.Data.GDT.Popup) {
+                    obj.Data.GDT.Popup.Enable = 0;
+                }
+                cleanedItems.push('广点通配置');
+            }
+
+            // 清除阅读器弹窗配置（确保全部禁用）
+            if (obj.Data.ReaderDialog) {
+                if (obj.Data.ReaderDialog.BookDialog) {
+                    obj.Data.ReaderDialog.BookDialog.Enabled = 0;
+                }
+                if (obj.Data.ReaderDialog.FirstDialog) {
+                    obj.Data.ReaderDialog.FirstDialog.Enabled = 0;
+                }
+                if (obj.Data.ReaderDialog.SkateDialog) {
+                    obj.Data.ReaderDialog.SkateDialog.Enabled = 0;
+                }
+                if (obj.Data.ReaderDialog.MultiChapters) {
+                    obj.Data.ReaderDialog.MultiChapters.Enabled = 0;
+                }
+                if (obj.Data.ReaderDialog.DialogV2) {
+                    obj.Data.ReaderDialog.DialogV2 = [];
+                }
+            }
+
+            // 禁用剪贴板读取
+            if (obj.Data.EnableClipboardReading !== undefined) {
+                obj.Data.EnableClipboardReading = 0;
+            }
+
+            // 禁用章节提前引导
+            if (obj.Data.EnableChapterAdvanceGuide !== undefined) {
+                obj.Data.EnableChapterAdvanceGuide = 0;
+            }
+
+            if (cleanedItems.length > 0) {
+                console.log(`已清除客户端配置广告: ${cleanedItems.join(', ')}`);
+            } else {
+                console.log('已处理客户端配置（无需清理）');
+            }
         }
     }
 

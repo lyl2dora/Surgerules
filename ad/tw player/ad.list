@@ -1,104 +1,71 @@
-DOMAIN-SUFFIX,taboola.com,REJECT
-DOMAIN-SUFFIX,trc.taboola.com,REJECT
-DOMAIN-SUFFIX,sync.taboola.com,REJECT
-DOMAIN-SUFFIX,hk-trc-events.taboola.com,REJECT
-DOMAIN-SUFFIX,hk-wf.taboola.com,REJECT
-DOMAIN-SUFFIX,hk-vid-events.taboola.com,REJECT
-DOMAIN-SUFFIX,hk-match.taboola.com,REJECT
-DOMAIN-SUFFIX,imprhkmp.taboola.com,REJECT
-DOMAIN-SUFFIX,vidstatb.taboola.com,REJECT
-DOMAIN-SUFFIX,vidstat.taboola.com,REJECT
-DOMAIN-SUFFIX,images.taboola.com,REJECT
+# Surge Rule Set - 精确广告域名拦截
+# 基于实际抓包请求生成
+# 更新时间: 2025-11-18
+# 说明: 仅包含抓包中确认的广告域名，无通用正则
 
-# ======================================
+# ==========================================
+# Taboola 广告平台 (10个域名)
+# ==========================================
+DOMAIN,hk-match.taboola.com
+DOMAIN,hk-trc-events.taboola.com
+DOMAIN,hk-vid-events.taboola.com
+DOMAIN,hk-wf.taboola.com
+DOMAIN,images.taboola.com
+DOMAIN,imprhkmp.taboola.com
+DOMAIN,sync.taboola.com
+DOMAIN,trc.taboola.com
+DOMAIN,vidstat.taboola.com
+DOMAIN,vidstatb.taboola.com
+
+# ==========================================
 # Google DoubleClick 广告
-# ======================================
-DOMAIN-SUFFIX,doubleclick.net,REJECT
-DOMAIN,cm.g.doubleclick.net,REJECT
+# ==========================================
+DOMAIN,cm.g.doubleclick.net
 
-# ======================================
+# ==========================================
 # 程序化广告交易平台
-# ======================================
-DOMAIN-SUFFIX,bidswitch.net,REJECT
-DOMAIN,x.bidswitch.net,REJECT
+# ==========================================
+DOMAIN,x.bidswitch.net
+DOMAIN,match.adsrvr.org
 
-# ======================================
-# The Trade Desk
-# ======================================
-DOMAIN-SUFFIX,adsrvr.org,REJECT
-DOMAIN,match.adsrvr.org,REJECT
+# ==========================================
+# 其他广告网络
+# ==========================================
+DOMAIN,pixel.advertising.com
+DOMAIN,client-side-metrics.sg1.as.criteo.net
 
-# ======================================
-# AOL Advertising
-# ======================================
-DOMAIN-SUFFIX,advertising.com,REJECT
-DOMAIN,pixel.advertising.com,REJECT
-
-# ======================================
-# Criteo 广告
-# ======================================
-DOMAIN-SUFFIX,criteo.net,REJECT
-DOMAIN,client-side-metrics.sg1.as.criteo.net,REJECT
-
-# ======================================
+# ==========================================
 # 游戏广告平台
-# ======================================
-DOMAIN-SUFFIX,adsjumbo.com,REJECT
-DOMAIN,api.adsjumbo.com,REJECT
-DOMAIN-SUFFIX,gamessumo.com,REJECT
-DOMAIN,games.gamessumo.com,REJECT
+# ==========================================
+DOMAIN,adsjumbo.com
+DOMAIN,api.adsjumbo.com
+DOMAIN,games.gamessumo.com
+DOMAIN,gamessumo.com
 
-# ======================================
-# Rocket Fuel 广告
-# ======================================
-DOMAIN-SUFFIX,rfihub.com,REJECT
-DOMAIN,p.rfihub.com,REJECT
+# ==========================================
+# 其他广告服务
+# ==========================================
+DOMAIN,p.rfihub.com
+DOMAIN,ssbsync.smartadserver.com
+DOMAIN,aa.agkn.com
 
-# ======================================
-# Smart AdServer
-# ======================================
-DOMAIN-SUFFIX,smartadserver.com,REJECT
-DOMAIN,ssbsync.smartadserver.com,REJECT
+# ==========================================
+# 应用统计分析
+# ==========================================
+DOMAIN,in.appcenter.ms
 
-# ======================================
-# Neustar (Aggregate Knowledge)
-# ======================================
-DOMAIN-SUFFIX,agkn.com,REJECT
-DOMAIN,aa.agkn.com,REJECT
+# ==========================================
+# 特定路径拦截 (精确匹配)
+# ==========================================
+# Temu 广告追踪 API
+URL-REGEX,^https?:\/\/www\.temu\.com\/api\/adx\/
 
-# ======================================
-# 应用统计/分析
-# ======================================
-DOMAIN-SUFFIX,appcenter.ms,REJECT
-DOMAIN,in.appcenter.ms,REJECT
+# Taboola 视频广告竞价
+URL-REGEX,^https?:\/\/hk-wf\.taboola\.com\/VideoBidRequestHandlerServlet
 
-# ======================================
-# Temu 广告追踪
-# ======================================
-DOMAIN-KEYWORD,adx,REJECT
-URL-REGEX,^https?:\/\/.*\.temu\.com\/api\/adx\/,REJECT
+# Taboola 黑屏占位视频
+URL-REGEX,^https?:\/\/vidstatb\.taboola\.com\/vid\/blackScreen
 
-# ======================================
-# URL 规则 - 广告路径拦截
-# ======================================
-URL-REGEX,\/ad[sv]?\/,REJECT
-URL-REGEX,\/pixel.*taboola,REJECT
-URL-REGEX,\/track.*ad,REJECT
-URL-REGEX,\/sync.*ad,REJECT
-URL-REGEX,\/log.*ad,REJECT
-URL-REGEX,\/ev\.php,REJECT
-URL-REGEX,\/event2\.php,REJECT
-
-# ======================================
-# 视频广告
-# ======================================
-URL-REGEX,blackScreen.*\.mp4,REJECT
-URL-REGEX,VideoBidRequestHandlerServlet,REJECT
-
-# ======================================
-# 通用广告关键词拦截
-# ======================================
-DOMAIN-KEYWORD,advertis,REJECT
-DOMAIN-KEYWORD,doubleclick,REJECT
-DOMAIN-KEYWORD,-ad-,REJECT
-DOMAIN-KEYWORD,adservice,REJECT
+# AdSjumbo 事件追踪
+URL-REGEX,^https?:\/\/api\.adsjumbo\.com\/ev\.php
+URL-REGEX,^https?:\/\/adsjumbo\.com\/account\/event

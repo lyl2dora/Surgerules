@@ -1,0 +1,104 @@
+DOMAIN-SUFFIX,taboola.com,REJECT
+DOMAIN-SUFFIX,trc.taboola.com,REJECT
+DOMAIN-SUFFIX,sync.taboola.com,REJECT
+DOMAIN-SUFFIX,hk-trc-events.taboola.com,REJECT
+DOMAIN-SUFFIX,hk-wf.taboola.com,REJECT
+DOMAIN-SUFFIX,hk-vid-events.taboola.com,REJECT
+DOMAIN-SUFFIX,hk-match.taboola.com,REJECT
+DOMAIN-SUFFIX,imprhkmp.taboola.com,REJECT
+DOMAIN-SUFFIX,vidstatb.taboola.com,REJECT
+DOMAIN-SUFFIX,vidstat.taboola.com,REJECT
+DOMAIN-SUFFIX,images.taboola.com,REJECT
+
+# ======================================
+# Google DoubleClick 广告
+# ======================================
+DOMAIN-SUFFIX,doubleclick.net,REJECT
+DOMAIN,cm.g.doubleclick.net,REJECT
+
+# ======================================
+# 程序化广告交易平台
+# ======================================
+DOMAIN-SUFFIX,bidswitch.net,REJECT
+DOMAIN,x.bidswitch.net,REJECT
+
+# ======================================
+# The Trade Desk
+# ======================================
+DOMAIN-SUFFIX,adsrvr.org,REJECT
+DOMAIN,match.adsrvr.org,REJECT
+
+# ======================================
+# AOL Advertising
+# ======================================
+DOMAIN-SUFFIX,advertising.com,REJECT
+DOMAIN,pixel.advertising.com,REJECT
+
+# ======================================
+# Criteo 广告
+# ======================================
+DOMAIN-SUFFIX,criteo.net,REJECT
+DOMAIN,client-side-metrics.sg1.as.criteo.net,REJECT
+
+# ======================================
+# 游戏广告平台
+# ======================================
+DOMAIN-SUFFIX,adsjumbo.com,REJECT
+DOMAIN,api.adsjumbo.com,REJECT
+DOMAIN-SUFFIX,gamessumo.com,REJECT
+DOMAIN,games.gamessumo.com,REJECT
+
+# ======================================
+# Rocket Fuel 广告
+# ======================================
+DOMAIN-SUFFIX,rfihub.com,REJECT
+DOMAIN,p.rfihub.com,REJECT
+
+# ======================================
+# Smart AdServer
+# ======================================
+DOMAIN-SUFFIX,smartadserver.com,REJECT
+DOMAIN,ssbsync.smartadserver.com,REJECT
+
+# ======================================
+# Neustar (Aggregate Knowledge)
+# ======================================
+DOMAIN-SUFFIX,agkn.com,REJECT
+DOMAIN,aa.agkn.com,REJECT
+
+# ======================================
+# 应用统计/分析
+# ======================================
+DOMAIN-SUFFIX,appcenter.ms,REJECT
+DOMAIN,in.appcenter.ms,REJECT
+
+# ======================================
+# Temu 广告追踪
+# ======================================
+DOMAIN-KEYWORD,adx,REJECT
+URL-REGEX,^https?:\/\/.*\.temu\.com\/api\/adx\/,REJECT
+
+# ======================================
+# URL 规则 - 广告路径拦截
+# ======================================
+URL-REGEX,\/ad[sv]?\/,REJECT
+URL-REGEX,\/pixel.*taboola,REJECT
+URL-REGEX,\/track.*ad,REJECT
+URL-REGEX,\/sync.*ad,REJECT
+URL-REGEX,\/log.*ad,REJECT
+URL-REGEX,\/ev\.php,REJECT
+URL-REGEX,\/event2\.php,REJECT
+
+# ======================================
+# 视频广告
+# ======================================
+URL-REGEX,blackScreen.*\.mp4,REJECT
+URL-REGEX,VideoBidRequestHandlerServlet,REJECT
+
+# ======================================
+# 通用广告关键词拦截
+# ======================================
+DOMAIN-KEYWORD,advertis,REJECT
+DOMAIN-KEYWORD,doubleclick,REJECT
+DOMAIN-KEYWORD,-ad-,REJECT
+DOMAIN-KEYWORD,adservice,REJECT

@@ -289,6 +289,18 @@ try {
                 obj.Data.EnableChapterAdvanceGuide = 0;
             }
 
+            // 禁用每日推荐灰度测试（书架顶部"每日导读"推荐卡片）
+            if (obj.Data.DailyRecommendGray !== undefined) {
+                obj.Data.DailyRecommendGray = 0;
+                cleanedItems.push('每日推荐灰度测试');
+            }
+
+            // 禁用每日阅读推荐原因开关
+            if (obj.Data.DailyReadRecReasonSwitch !== undefined) {
+                obj.Data.DailyReadRecReasonSwitch = 0;
+                cleanedItems.push('每日阅读推荐原因');
+            }
+
             if (cleanedItems.length > 0) {
                 console.log(`已清除客户端配置广告: ${cleanedItems.join(', ')}`);
             } else {

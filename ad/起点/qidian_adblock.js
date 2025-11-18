@@ -301,6 +301,12 @@ try {
                 cleanedItems.push('每日阅读推荐原因');
             }
 
+            // 禁用书架推荐检查功能（占位符"每日导读"卡片）
+            if (obj.Data.QueryBookShelfRecommendCheckNum !== undefined) {
+                obj.Data.QueryBookShelfRecommendCheckNum = 0;
+                cleanedItems.push('书架推荐检查');
+            }
+
             if (cleanedItems.length > 0) {
                 console.log(`已清除客户端配置广告: ${cleanedItems.join(', ')}`);
             } else {

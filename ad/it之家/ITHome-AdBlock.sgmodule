@@ -1,0 +1,45 @@
+#!name=IT之家去广告
+#!desc=基于HAR文件分析生成的IT之家去广告规则，拦截统计追踪和信息流广告
+
+# 统计信息：
+# - 拦截追踪域名：13个
+# - 拦截比例：约13.8%
+# - 包含信息流广告过滤脚本
+
+[Rule]
+# 友盟统计
+DOMAIN-SUFFIX,umeng.com,REJECT
+DOMAIN-SUFFIX,umengcloud.com,REJECT
+DOMAIN,cnlogs.umeng.com,REJECT
+DOMAIN,cnlogs.umengcloud.com,REJECT
+DOMAIN,resolve.umeng.com,REJECT
+DOMAIN,utoken.umeng.com,REJECT
+
+# 淘宝广告与追踪
+DOMAIN,adashbc.ut.taobao.com,REJECT
+DOMAIN,adashxgc.ut.taobao.com,REJECT
+DOMAIN,baichuan-sdk.taobao.com,REJECT
+DOMAIN,baichuan-sdk.alicdn.com,REJECT
+DOMAIN,userlink.alicdn.com,REJECT
+
+# 京东追踪统计
+DOMAIN,knicks.jd.com,REJECT
+DOMAIN,kepler.jd.com,REJECT
+
+# 腾讯Bugly崩溃统计
+DOMAIN-SUFFIX,bugly.qq.com,REJECT
+DOMAIN,ios.bugly.qq.com,REJECT
+
+# 阿里云日志服务
+DOMAIN,alivc-aio.cn-hangzhou.dualstack.log.aliyuncs.com,REJECT
+
+# 通用广告追踪关键词
+DOMAIN-KEYWORD,adash,REJECT
+
+[Script]
+# IT之家信息流广告过滤
+# 注意：需要将 ithome-ad-filter.js 文件放到 Surge 的脚本目录，或者修改为自己托管的URL
+ithome-ad-filter = type=http-response,pattern=^https?://napi\.ithome\.com/api/(news/indexv2|topmenu/getmenufeeds|news/gethotbang),requires-body=1,max-size=0,script-path=ithome-ad-filter.js
+
+[MITM]
+hostname = %APPEND% napi.ithome.com

@@ -39,7 +39,7 @@ DOMAIN-KEYWORD,adash,REJECT
 [Script]
 # IT之家信息流广告过滤
 # 注意：需要将 ithome-ad-filter.js 文件放到 Surge 的脚本目录，或者修改为自己托管的URL
-ithome-ad-filter = type=http-response,pattern=^https?://napi\.ithome\.com/api/(news/indexv2|topmenu/getmenufeeds|news/gethotbang),requires-body=1,max-size=0,script-path=ithome-ad-filter.js
+ithome-ad-filter = type=http-response,pattern=^https?://napi\.ithome\.com/api/(news/indexv2|topmenu/getmenufeeds|news/gethotbang),requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/lyl2dora/Surgerules/refs/heads/main/ad/it%E4%B9%8B%E5%AE%B6/ithome-ad-filter.js
 
 [MITM]
 hostname = %APPEND% napi.ithome.com

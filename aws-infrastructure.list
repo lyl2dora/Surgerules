@@ -7,3 +7,4 @@ DOMAIN-SUFFIX,cloudfront.net
 DOMAIN-SUFFIX,elasticbeanstalk.com
 DOMAIN-SUFFIX,amplifyapp.com
 DOMAIN-SUFFIX,amplifyframework.com
+DOMAIN-SUFFIX,on.aws
